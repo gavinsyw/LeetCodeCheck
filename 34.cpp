@@ -1,3 +1,5 @@
+// 4ms, 16.4MB
+
 class Solution {
 public:
     vector<int> searchRange(vector<int>& nums, int target) {
