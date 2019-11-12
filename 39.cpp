@@ -33,3 +33,30 @@ public:
             return solutionSet[target];
     }
 };
+
+// another solution, 28ms, 15.4MB
+
+class Solution {
+public:
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+        if (candidates.size() == 0)
+            return {};
+        vector<vector<int>> result = {};
+        vector<vector<vector<int>>> solutionSet(target+1, result);
+        for (int c:candidates) {
+            for (int i = 0; i < target+1; ++i) {
+                if (i == c) {
+                    solutionSet[i].push_back({i});
+                }
+                else if (i-c>0 && solutionSet[i-c].size() != 0) {
+                    for (vector<int> x:solutionSet[i-c]) {
+                        vector<int> y = x;
+                        y.push_back(c);
+                        solutionSet[i].push_back(y);
+                    }
+                }
+            }
+        }
+        return solutionSet[target];
+    }
+};
